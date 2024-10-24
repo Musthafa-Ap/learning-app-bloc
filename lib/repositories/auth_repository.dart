@@ -8,7 +8,6 @@ class AuthRepository {
     Uri url = Uri.parse('http://learningapp.e8demo.com/api/$login');
     Map<String, dynamic> data = {'email': email, 'password': password};
     Response response = await post(url, body: data);
-    print(response.body);
     if (response.statusCode == 200) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       if (jsonResponse['result'] == 'failure') {
@@ -24,6 +23,8 @@ class AuthRepository {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
         sharedPreferences.setBool('isLogged', true);
+        sharedPreferences.setString(
+            'token', jsonResponse['token']['access_token']);
       }
     } else {
       throw Exception();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app_bloc/blocs/auth_bloc/auth_bloc.dart';
+import 'package:learning_app_bloc/blocs/favorite_bloc/favorite_bloc.dart';
+import 'package:learning_app_bloc/blocs/home_bloc/home_bloc.dart';
 import 'package:learning_app_bloc/view/splash_screen/splash_screen.dart';
 
 void main() {
@@ -16,7 +18,13 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<AuthBloc>(
             create: (context) => AuthBloc(),
-          )
+          ),
+          BlocProvider<HomeBloc>(
+            create: (context) => HomeBloc(),
+          ),
+          BlocProvider<FavoriteBloc>(
+            create: (context) => FavoriteBloc(),
+          ),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
